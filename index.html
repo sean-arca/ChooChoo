@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Choo Choo Train Schedule</title>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Style CSS -->
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+        <!-- Added Moment JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- Jumbotron -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Choo Choo</h1>
+                <p>Your everyday train schedule. Don't miss another train again!</p>
+            </div>
+        </div>
+
+        <div class="container">
+        <!-- Schedule Table -->
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Schedule</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td class="tableHead">Train Name</td>
+                                        <td class="tableHead">Destination</td>
+                                        <td class="tableHead">Frequency (min)</td>
+                                        <td class="tableHead">Next Arrival</td>
+                                        <td class="tableHead">Minutes Away</td>
+                                    </tr>
+                                    <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+        <!-- Add Train Panel -->
+        <div class="container">
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Add Train</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <!-- Form -->
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="search">Train Name</label>
+                                    <input type="text" class="form-control trainName">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="startYear">Destination</label>
+                                    <input type="text" class="form-control destination">
+                                </div>
+
+                                <div class="form-group">
+                                        <label for="endYear">First Train Time (HH:mm - military time) - ex: 08:30</label>
+                                        <input type="text" class="form-control firstTrain">
+                                </div>
+
+                                <div class="form-group">
+                                        <label for="endYear">Frequency (min)</label>
+                                        <input type="text" class="form-control frequency">
+                                </div>
+
+                                <button type="search" class="btn btn-default submitBtn">Submit</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+
+        <!-- jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </body>
+</html>
