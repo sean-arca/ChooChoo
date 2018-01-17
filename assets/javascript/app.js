@@ -12,18 +12,13 @@ firebase.initializeApp(config);
 // Create a variable to reference the database.
 var database = firebase.database();
 
-// Initial Values
-var train = "";
-var destination = "";
-var firstTrain = "";
-var frequency = 0;
-
 // On click submit form
 $(".submitBtn").on('click', function(){
-    train = $(".trainName").val().trim();
-    destination = $(".destination").val().trim();
-    firstTrain = $(".firstTrain").val().trim();
-    frequency = $(".frequency").val().trim();
+    // Trim values from input
+    var train = $(".trainName").val().trim();
+    var destination = $(".destination").val().trim();
+    var firstTrain = $(".firstTrain").val().trim();
+    var frequency = $(".frequency").val().trim();
   
     // Push data from form to Firebase
     database.ref().push({
@@ -33,3 +28,42 @@ $(".submitBtn").on('click', function(){
         frequency: frequency
     })
 });
+
+// Check values via console and append it to new data row
+database.ref().on("child_added", function(childSnapshot) {
+    
+    // Log values of snapshot
+    console.log(childSnapshot.val().trainName);
+    console.log(childSnapshot.val().destination);
+    console.log(childSnapshot.val().firstTrain);
+    console.log(childSnapshot.val().frequency);
+
+    // Create variable for train frequency
+    var tfrequency = childSnapshot.val().frequency;
+
+    // Pushed back 1 year to make sure it comes before current time
+    var convertedDate = moment(childSnapshot.val().firstTrain, 'hh:mm').subtract(1, 'years');
+    var trainTime = moment(convertedDate).format('HH:mm');
+    var currentTime = moment();
+
+    // Pushed back 1 year to make sure it comes before current time
+    var firstTimeConverted = moment(trainTime,'hh:mm').subtract(1, 'years');
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    var tRemainder = diffTime % tfrequency;
+
+    // Create variables for minutes til next train
+    var tMinutesTrain = tfrequency - tRemainder;
+    var nextTrain = moment().add(tMinutesTrain, 'minutes').format('HH:mm')
+
+    // Append data to new row
+    $(".table").append("<tr><td>" + childSnapshot.val().trainName + "</td><td>" +
+    childSnapshot.val().destination + "</td><td>" + childSnapshot.val().frequency +
+    "</td><td>" + trainTime + "</td><td>" + tMinutesTrain + "</td></tr>")
+
+// Error logging
+},function(errorObject) {
+    console.log('Errors handled: ' + errorObject.code);
+  });
+
+// Refresh every minute to update
+setInterval(function(){location.reload();}, 60000);
